@@ -6,18 +6,16 @@ namespace Northwind.Models
     {
         // the repository class depends on the NorthwindContext service
         // which was registered at application startup
-        private NorthwindContext context;
-        public EFNorthwindRepository(NorthwindContext ctx)
+        private NWFinal_19_CJLContext context;
+        public EFNorthwindRepository(NWFinal_19_CJLContext ctx)
         {
             context = ctx;
         }
-        // create IQueryable for jeff models
-        public IQueryable<Category> Categories => context.Categories;
-        public IQueryable<Customer> Customers => context.Customers;
-        public IQueryable<Discount> Discounts => context.Discounts;
-        public IQueryable<Product> Products => context.Products;
-
-        //then scaffolded models
+        // create IQueryables
+        public IQueryable<Categories> Categories => context.Categories;
+        public IQueryable<Customers> Customers => context.Customers;
+        public IQueryable<Discounts> Discounts => context.Discounts;
+        public IQueryable<Products> Products => context.Products;
         public IQueryable<Employees> Employees => context.Employees;
         public IQueryable<EmployeeTerritories> EmployeeTerritories => context.EmployeeTerritories;
         public IQueryable<OrderDetails> OrderDetails => context.OrderDetails;
@@ -27,15 +25,15 @@ namespace Northwind.Models
         public IQueryable<Suppliers> Suppliers => context.Suppliers;
         public IQueryable<Territories> Territories => context.Territories;
 
-        public void AddCustomer(Customer customer)
+        public void AddCustomer(Customers customer)
         {
             context.Customers.Add(customer);
             context.SaveChanges();
         }
 
-        public void EditCustomer(Customer customer)
+        public void EditCustomer(Customers customer)
         {
-            var customerToUpdate = context.Customers.FirstOrDefault(c => c.CustomerID == customer.CustomerID);
+            var customerToUpdate = context.Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
             customerToUpdate.Address = customer.Address;
             customerToUpdate.City = customer.City;
             customerToUpdate.Region = customer.Region;
@@ -74,7 +72,7 @@ namespace Northwind.Models
 
         public CartItem AddToCart(CartItemJSON cartItemJSON)
         {
-            int CustomerId = context.Customers.FirstOrDefault(c => c.Email == cartItemJSON.email).CustomerID;
+            int CustomerId = context.Customers.FirstOrDefault(c => c.Email == cartItemJSON.email).CustomerId;
             int ProductId = cartItemJSON.id;
             // check for duplicate cart item
             CartItem cartItem = context.CartItems.FirstOrDefault(ci => ci.ProductId == ProductId && ci.CustomerId == CustomerId);

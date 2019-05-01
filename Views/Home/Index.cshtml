@@ -1,5 +1,5 @@
 ﻿@using Northwind.Models
-@model IEnumerable<Discount>
+@model IEnumerable<Discounts>
 
 <div class="jumbotron my-2 border border-secondary">
     <h1 class="display-4">Northwind</h1>
@@ -10,14 +10,14 @@
 </div>
 
 <div class="row">
-    @foreach (Discount d in Model)
+    @foreach (Discounts d in Model)
     {
         <div class="col-md m-3 p-3 discounts">
             <h3>@d.Title</h3>
             <div class="mb-4">
                 @d.Description
             </div>
-            <i>Discount expires: @d.EndTime.ToString("MM/dd/yyyy")</i><br />
+            <i>Discount expires: @d.EndTime.Value.ToShortDateString()</i><br />
             <a href="#" class="code" data-code="@d.Code" data-product="@d.Title"><i class="far fa-hand-point-right"></i> Discount Code</a>
         </div>
     }

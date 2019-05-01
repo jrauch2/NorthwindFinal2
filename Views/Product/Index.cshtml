@@ -1,5 +1,5 @@
 @using Northwind.Models
-@model IEnumerable<Category>
+@model IEnumerable<Categories>
 
 <div id="User" style="display:none;" data-email="@User.Identity.Name" data-customer="@User.IsInRole("Customer")"></div>
 <table class="table table-hover">
@@ -9,7 +9,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-8 mb-0">
                         <select class="form-control form-control-sm" id="CategoryId">
-                        @foreach (Category c in Model)
+                        @foreach (Categories c in Model)
                         {
                             if (c.CategoryId == ViewBag.id)
                                 { <option value="@c.CategoryId" selected>@c.CategoryName</option> }

@@ -28,7 +28,7 @@ namespace Northwind.Controllers
         {
             if (ModelState.IsValid)
             {
-                Customer customer = customerWithPassword.Customer;
+                Customers customer = customerWithPassword.Customer;
                 if (repository.Customers.Any(c => c.CompanyName == customer.CompanyName))
                 {
                     ModelState.AddModelError("", "Company Name must be unique");
@@ -77,7 +77,7 @@ namespace Northwind.Controllers
         public IActionResult Account() => View(repository.Customers.FirstOrDefault(c => c.Email == User.Identity.Name));
 
         [Authorize(Roles = "Customer"), HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Account(Customer customer)
+        public IActionResult Account(Customers customer)
         {
             // Edit customer info
             repository.EditCustomer(customer);

@@ -4,13 +4,10 @@ namespace Northwind.Models
 {
     public interface INorthwindRepository
     {
-        //jeff models
-        IQueryable<Category> Categories { get; }
-        IQueryable<Customer> Customers { get; }
-        IQueryable<Product> Products { get; }
-        IQueryable<Discount> Discounts { get; }
-
-        //scaffolded models
+        IQueryable<Categories> Categories { get; }
+        IQueryable<Customers> Customers { get; }
+        IQueryable<Products> Products { get; }
+        IQueryable<Discounts> Discounts { get; }
         IQueryable<Employees> Employees  { get; }
         IQueryable<EmployeeTerritories> EmployeeTerritories { get; }
         IQueryable<OrderDetails> OrderDetails { get; }
@@ -19,8 +16,8 @@ namespace Northwind.Models
         IQueryable<Shippers> Shippers { get; }
         IQueryable<Territories> Territories { get; }
 
-        void AddCustomer(Customer customer);
-        void EditCustomer(Customer customer);
+        void AddCustomer(Customers customer);
+        void EditCustomer(Customers customer);
 
         void AddEmployee(Employees employee);
         void EditEmployee(Employees employee);

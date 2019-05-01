@@ -12,7 +12,7 @@ namespace Northwind.Models
         [Required]
         public int Quantity { get; set; }
 
-        public Customer Customer { get; set; }
-        public Product Product { get; set; }
+        public Customers Customer { get; set; }
+        public Products Product { get; set; }
     }
 }

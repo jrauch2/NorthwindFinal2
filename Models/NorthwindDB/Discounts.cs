@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Northwind.Models
 {
@@ -7,7 +8,9 @@ namespace Northwind.Models
     {
         public int DiscountId { get; set; }
         public int? Code { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? StartTime { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? EndTime { get; set; }
         public int? ProductId { get; set; }
         public decimal? DiscountPercent { get; set; }
