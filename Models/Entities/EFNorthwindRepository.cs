@@ -4,10 +4,10 @@ namespace Northwind.Models
 {
     public class EFNorthwindRepository : INorthwindRepository
     {
-        // the repository class depends on the NorthwindContext service
+        // the repository class depends on the NWFinal_19_CJLContext service
         // which was registered at application startup
-        private NWFinal_19_CJLContext context;
-        public EFNorthwindRepository(NWFinal_19_CJLContext ctx)
+        private NorthwindContext context;
+        public EFNorthwindRepository(NorthwindContext ctx)
         {
             context = ctx;
         }

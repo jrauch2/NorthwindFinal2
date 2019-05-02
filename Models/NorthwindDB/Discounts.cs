@@ -6,6 +6,7 @@ namespace Northwind.Models
 {
     public partial class Discounts
     {
+        [Key]
         public int DiscountId { get; set; }
         public int? Code { get; set; }
         [DataType(DataType.Date)]

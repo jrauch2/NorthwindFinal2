@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Northwind.Models
 {
@@ -10,6 +11,7 @@ namespace Northwind.Models
             EmployeeTerritories = new HashSet<EmployeeTerritories>();
         }
 
+        [Key]
         public string TerritoryId { get; set; }
         public string TerritoryDescription { get; set; }
         public int RegionId { get; set; }

@@ -35,7 +35,7 @@ namespace Northwind
                 opts.Password.RequiredUniqueChars = 1;
             }).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
             // this is where we use the config info for our connection string
-            services.AddDbContext<NWFinalIdentity_19_CJLContext>(options => options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
+            services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
             // since we created an interface for our repository, we must map the 
             // interface to the concrete class to ensure that when an INorthwindRepository
             // is requested, a new instance of EFNorthwindRepository is returned
@@ -52,8 +52,8 @@ namespace Northwind
             }
 
             // Make the authentication service available to the application (Order matters here)
-            app.UseAuthentication();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
         }
     }

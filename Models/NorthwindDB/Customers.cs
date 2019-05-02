@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Northwind.Models
 {
@@ -10,6 +11,7 @@ namespace Northwind.Models
             Orders = new HashSet<Orders>();
         }
 
+        [Key]
         public int CustomerId { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }
