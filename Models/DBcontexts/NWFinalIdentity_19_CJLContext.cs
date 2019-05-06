@@ -129,6 +129,7 @@ namespace Northwind.Models
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
+
         }
     }
 }

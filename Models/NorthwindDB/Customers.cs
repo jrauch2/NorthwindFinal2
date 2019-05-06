@@ -13,6 +13,7 @@ namespace Northwind.Models
 
         [Key]
         public int CustomerId { get; set; }
+        [Required(ErrorMessage = "Company Name is required")]
         public string CompanyName { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
@@ -21,6 +22,7 @@ namespace Northwind.Models
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
+        [Required]
         public string Email { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }

@@ -70,6 +70,12 @@ namespace Northwind.Models
             context.SaveChanges();
         }
 
+        public void DeleteEmployee(Employees employee)
+        {
+            context.Employees.Remove(employee);
+            context.SaveChanges();
+        }
+
         public CartItem AddToCart(CartItemJSON cartItemJSON)
         {
             int CustomerId = context.Customers.FirstOrDefault(c => c.Email == cartItemJSON.email).CustomerId;

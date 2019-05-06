@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace Northwind.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<IActionResult> Register(CustomerWithPassword customerWithPassword)
+        public async Task<IActionResult> Register(CustomerWithPassword customerWithPassword)
         {
             if (ModelState.IsValid)
             {

@@ -21,6 +21,7 @@ namespace Northwind.Models
 
         void AddEmployee(Employees employee);
         void EditEmployee(Employees employee);
+        void DeleteEmployee(Employees employee);
 
         CartItem AddToCart(CartItemJSON cartItemJSON);
     }

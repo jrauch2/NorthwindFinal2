@@ -17,8 +17,8 @@ namespace Northwind.Controllers
     {
         // this controller depends on the NorthwindRepository & the UserManager
         private INorthwindRepository repository;
-        private UserManager<AppUser> userManager;
-        public EmployeeController(INorthwindRepository repo, UserManager<AppUser> usrMgr)
+        private UserManager<EmployeeUser> userManager;
+        public EmployeeController(INorthwindRepository repo, UserManager<EmployeeUser> usrMgr)
         {
             repository = repo;
             userManager = usrMgr;
@@ -31,17 +31,17 @@ namespace Northwind.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<IActionResult> Register(EmployeeWithPassword employeeWithPassword)
+        public async Task<IActionResult> Register(EmployeeWithPassword employeeWithPassword)
         {
             if (ModelState.IsValid)
             {
                 Employees employee = employeeWithPassword.Employee;
+                repository.AddEmployee(employee);
                 if (ModelState.IsValid)
                 {
-                    AppUser user = new AppUser
+                    EmployeeUser user = new EmployeeUser
                     {
-                        //concatenate first letter of first name with last name for a unique (for now) user name
-                        UserName = employee.FirstName[0] + employee.LastName
+                        UserName = employee.EmployeeId.ToString()
                     };
                     // Add user to Identity DB
                     IdentityResult result = await userManager.CreateAsync(user, employeeWithPassword.Password);
@@ -58,12 +58,11 @@ namespace Northwind.Controllers
                         {
                             // Delete User from Identity DB
                             await userManager.DeleteAsync(user);
+                            repository.DeleteEmployee(employee);
                             AddErrorsFromResult(result);
                         }
                         else
                         {
-                            // Create employee (Northwind)
-                            repository.AddEmployee(employee);
                             return RedirectToAction("Index", "Home");
                         }
                     }

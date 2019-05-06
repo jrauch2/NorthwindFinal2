@@ -34,6 +34,18 @@ namespace Northwind
                 opts.Password.RequireDigit = false;
                 opts.Password.RequiredUniqueChars = 1;
             }).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+            services.AddDbContext<EmployeeIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:NWEmployeeIdentity:ConnectionString"]));
+            services.AddSecondIdentity<EmployeeUser, IdentityRole>(opts =>
+            {
+                opts.User.RequireUniqueEmail = false;
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+                opts.Password.RequiredUniqueChars = 1;
+            }).AddEntityFrameworkStores<EmployeeIdentityDbContext>().AddDefaultTokenProviders();
+
             // this is where we use the config info for our connection string
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
             // since we created an interface for our repository, we must map the 
