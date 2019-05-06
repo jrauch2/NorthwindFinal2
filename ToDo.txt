@@ -1,0 +1,8 @@
+﻿Create Employee Admin role
+Employee Admin pages
+Employee Admin Controller
+Link to Employee Register - Admin accessable only
+Employee Login
+May need to add to Product Api for filtering in employee view
+Employees view and filter products (AJAX)
+
