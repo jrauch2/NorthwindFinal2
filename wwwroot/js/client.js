@@ -21,4 +21,6 @@
             $('#toast').toast('hide');
         }
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
 });

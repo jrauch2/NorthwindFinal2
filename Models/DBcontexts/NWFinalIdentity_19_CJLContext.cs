@@ -1,13 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace Northwind.Models
+namespace Northwind.Models.DBcontexts
 {
     public partial class NWFinalIdentity_19_CJLContext : DbContext
     {
-        public NWFinalIdentity_19_CJLContext()
+        public IConfiguration Configuration { get; }
+        public NWFinalIdentity_19_CJLContext(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
         public NWFinalIdentity_19_CJLContext(DbContextOptions<NWFinalIdentity_19_CJLContext> options)
@@ -23,12 +24,12 @@ namespace Northwind.Models
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=bitsql.wctc.edu;Database=NWFinalIdentity_19_CJL;User ID=clebombard;Password=000526297;Trusted_Connection=False;");
+                optionsBuilder.UseSqlServer(Configuration["Data:NWIdentity:ConnectionString"]);
             }
         }
 

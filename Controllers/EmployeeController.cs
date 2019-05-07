@@ -24,53 +24,7 @@ namespace Northwind.Controllers
             userManager = usrMgr;
         }
 
-        //TODO: Create view
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(EmployeeWithPassword employeeWithPassword)
-        {
-            if (ModelState.IsValid)
-            {
-                Employees employee = employeeWithPassword.Employee;
-                repository.AddEmployee(employee);
-                if (ModelState.IsValid)
-                {
-                    EmployeeUser user = new EmployeeUser
-                    {
-                        UserName = employee.EmployeeId.ToString()
-                    };
-                    // Add user to Identity DB
-                    IdentityResult result = await userManager.CreateAsync(user, employeeWithPassword.Password);
-                    if (!result.Succeeded)
-                    {
-                        AddErrorsFromResult(result);
-                    }
-                    else
-                    {
-                        // Assign user to employee Role
-                        result = await userManager.AddToRoleAsync(user, "Employee");
-
-                        if (!result.Succeeded)
-                        {
-                            // Delete User from Identity DB
-                            await userManager.DeleteAsync(user);
-                            repository.DeleteEmployee(employee);
-                            AddErrorsFromResult(result);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }
-                }
-            }
-            return View();
-        }
-
+        
         //TODO: Create Views
         [Authorize(Roles = "Employee")]
         public IActionResult Account() => View(repository.Employees.FirstOrDefault(e => e.FirstName[0] + e.LastName == User.Identity.Name));

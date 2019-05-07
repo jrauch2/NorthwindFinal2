@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Roles</h4></div>
+
+<div class="text-danger" asp-validation-summary="All"></div>
+
+<table class="table table-sm table-bordered">
+    <tr><th>Name</th><th></th></tr>
+    @if (!Model.Any())
+    {
+        <tr><td colspan="2" class="text-center">No Roles</td></tr>
+    }
+    else
+    {
+        foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@role.Id">Edit</a>
+                        <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                data-toggle="@(role.Name.Equals("Admin") ? "tooltip" : "")"  
+                                data-placement="@(role.Name.Equals("Admin") ? "right" : "")" 
+                                title="@(role.Name.Equals("Admin") ? "Cannot delete Admin role." : "")" 
+                                @(role.Name.Equals("Admin") ? "disabled" : "")>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<a class="btn btn-outline-primary" asp-action="Create">Create</a>
+<hr />
+<a asp-controller="Admin">User Accounts</a>
+<span> | </span>
+<a asp-controller="EmployeeAdmin">Employee Accounts</a>

@@ -1,0 +1,86 @@
+﻿@using Northwind.Models
+@model EditEmployeeModel
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Edit User</h4></div>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="@Model.EmployeeUser.Id"/>
+    <input type="hidden" asp-for="@Model.Employee.EmployeeId"/>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label asp-for="@Model.EmployeeUser.UserName">Employee ID</label>
+            <input asp-for="@Model.EmployeeUser.UserName" class="form-control" disabled/>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Password">Password</label>
+            <input asp-for="@Model.Password" class="form-control" placeholder="Password"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.TitleOfCourtesy">Title of Courtesy</label>
+            <input asp-for="@Model.Employee.TitleOfCourtesy" class="form-control" placeholder="Title of Courtesy"/>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Employee.FirstName">First Name *</label>
+            <input asp-for="@Model.Employee.FirstName" class="form-control" placeholder="First Name"/>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Employee.LastName">Last Name *</label>
+            <input asp-for="@Model.Employee.LastName" class="form-control" placeholder="Last Name"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.BirthDate">Birth Date</label>
+            <input type="date" asp-for="@Model.Employee.BirthDate" class="form-control" placeholder="Birth Date"/>
+        </div>
+    </div>
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Employee.Title">Title</label>
+            <input asp-for="@Model.Employee.Title" class="form-control" placeholder="Title"/>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Employee.ReportsTo">Reports To</label>
+            <input asp-for="@Model.Employee.ReportsTo" class="form-control" placeholder="Reports To"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.HireDate">Hire Date *</label>
+            <input type="date" asp-for="@Model.Employee.HireDate" class="form-control" placeholder="Hire Date"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Employee.Address">Address</label>
+            <input asp-for="@Model.Employee.Address" class="form-control" placeholder="Address"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.City">City</label>
+            <input asp-for="@Model.Employee.City" class="form-control" placeholder="City"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.Region">Region</label>
+            <input asp-for="@Model.Employee.Region" class="form-control" placeholder="Region"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.PostalCode">Postal Code</label>
+            <input asp-for="@Model.Employee.PostalCode" class="form-control" placeholder="Postal Code"/>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="@Model.Employee.Country">Country</label>
+            <input asp-for="@Model.Employee.Country" class="form-control" placeholder="Country"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Employee.HomePhone">Home Phone</label>
+            <input asp-for="@Model.Employee.HomePhone" class="form-control" placeholder="Home Phone"/>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Employee.Extension">Extension</label>
+            <input asp-for="@Model.Employee.Extension" class="form-control" placeholder="Extension"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+</form>

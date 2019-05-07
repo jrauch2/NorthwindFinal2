@@ -29,8 +29,12 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" asp-action="Category" asp-controller="Product"><i class="fas fa-list-ul"></i> Browse Categories</a>
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" asp-action="Discounts" asp-controller="Product"><i class="fas fa-tag"></i> Current Discounts</a>
+                        @if (User?.IsInRole("Employee") ?? false)
+                        {
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Product"><i class="fas fa-tag"></i> Manage Products</a>
+                        }
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -50,6 +54,19 @@
                         }
                     </div>
                 </li>
+                @if (User?.IsInRole("Admin") ?? false)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-users-cog"></i> Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Admin">Customer Accounts</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="EmployeeAdmin">Employee Accounts</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="RoleAdmin">Roles</a>
+                        </div>
+                    </li>
+                }
             </ul>
             @if (User?.Identity?.IsAuthenticated ?? false)
             {
