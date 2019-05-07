@@ -1,4 +1,4 @@
-﻿-DONE- Create Employee Admin role
+-DONE- Create Employee Admin role
 -DONE- Employee Admin pages
 -DONE- Employee Admin Controller
 -DONE- Link to Employee Register - Admin accessable only
