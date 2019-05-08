@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
 
@@ -12,6 +13,7 @@ namespace Northwind.Controllers
         public ProductController(INorthwindRepository repo) => repository = repo;
 
         public IActionResult Category() => View(repository.Categories.OrderBy(c => c.CategoryName));
+        [Authorize(Roles = "Employee")]
         public IActionResult Index(int id)
         {
             ViewBag.id = id;

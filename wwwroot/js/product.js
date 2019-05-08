@@ -1,5 +1,5 @@
 ﻿$(function () {
-    getProducts()
+    getProducts();
 
     function getProducts() {
         var id = $('#product_rows').data('id');

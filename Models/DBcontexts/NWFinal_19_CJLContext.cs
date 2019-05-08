@@ -1,13 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Northwind.Models
 {
     public partial class NWFinal_19_CJLContext : DbContext
     {
-        public NWFinal_19_CJLContext()
+        private IConfiguration Configuration { get; }
+        public NWFinal_19_CJLContext(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
         public NWFinal_19_CJLContext(DbContextOptions<NWFinal_19_CJLContext> options)
@@ -34,8 +35,7 @@ namespace Northwind.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=bitsql.wctc.edu;Database=NWFinal_19_CJL;User ID=clebombard;Password=000526297;Trusted_Connection=False;");
+                optionsBuilder.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]);
             }
         }
 
