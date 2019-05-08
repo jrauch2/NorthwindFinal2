@@ -3,9 +3,32 @@
 
     function getProducts() {
         var id = $('#product_rows').data('id');
-        var discontinued = $('#Discontinued').prop('checked') ? "" : "/discontinued/false";
+        var filter = "";
+        var radios = document.getElementsByName('productFilter');
+        var url = "";
+
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                if (radios[i].value == 'Discontinued') {
+                    filter = '/Discontinued';
+                    break;
+                } else if (radios[i].value == 'Reorder') {
+                    filter = '/Reorder';
+                    break;
+                } else if (radios[i].value == 'OutOfStock') {
+                    filter = '/OutOfStock';
+                    break;
+                }                
+            }
+        }
+        if (id == 0) {
+            url = "../../api";
+        } else {
+            url = "../../api/category/" + id;
+        }
+
         $.getJSON({
-            url: "../../api/category/" + id + "/product" + discontinued,
+            url: url + "/product" + filter,
             success: function (response, textStatus, jqXhr) {
                 //console.log(response);
                 $('#product_rows').html("");
@@ -26,12 +49,14 @@
         });
     }
 
+    getProducts();
+
     $('#CategoryId').on('change', function(){
         $('#product_rows').data('id', $(this).val());
         getProducts();
     });
 
-    $('#Discontinued').on('change', function(){
+    $('.productFilter').on('change', function () {
         getProducts();
     });
 
