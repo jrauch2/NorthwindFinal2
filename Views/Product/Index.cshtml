@@ -2,37 +2,48 @@
 @model IEnumerable<Categories>
 
 <div id="User" style="display:none;" data-email="@User.Identity.Name" data-customer="@User.IsInRole("Customer")"></div>
+<div class="row py-1">
+    <div class="form-group col-3 mb-0">
+        <select class="form-control form-control-sm" id="CategoryId">
+            <option value="" selected>Category</option>
+            @foreach (Categories c in Model)
+            {
+                if (c.CategoryId == ViewBag.id)
+                {
+                    <option value="@c.CategoryId" selected>@c.CategoryName</option>
+                }
+                else
+                {
+                    <option value="@c.CategoryId">@c.CategoryName</option>}
+            }
+        </select>
+    </div>
+    <div class="form-group col-2 mb-0">
+        <input class="productFilter" type="radio" name="productFilter" value="" id="All" checked />
+        <label for="Any">All</label>
+    </div>
+    <div class="form-group col-2 mb-0">
+        <input class="productFilter" type="radio" name="productFilter" value="Discontinued" id="Discontinued" />
+        <label for="Discontinued">Discontinued</label>
+    </div>
+    <div class="form-group col-2 mb-0">
+        <input class="productFilter" type="radio" name="productFilter" value="Reorder" id="Reorder" />
+        <label for="Reorder">Reorder</label>
+    </div>
+    <div class="form-group col-2 mb-0">
+        <input class="productFilter" type="radio" name="productFilter" value="OutOfStock" id="OutOfStock" />
+        <label for="OutOfStock">Out Of Stock</label>
+    </div>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">
-                <div class="form-row">
-                    <div class="form-group col-md-8 mb-0">
-                        <select class="form-control form-control-sm" id="CategoryId">
-                        @foreach (Categories c in Model)
-                        {
-                            if (c.CategoryId == ViewBag.id)
-                                { <option value="@c.CategoryId" selected>@c.CategoryName</option> }
-                            else
-                                { <option value="@c.CategoryId">@c.CategoryName</option> }
-                        }
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4 mb-0">
-                        <div class="form-check text-right">
-                            <input class="form-check-input" type="checkbox" id="Discontinued">
-                            <label class="form-check-label" for="Discontinued">Discontinued</label>
-                        </div>
-                    </div>
-                </div>
-            </th>
+            <th>Products</th>
             <th scope="col" class="text-right">Price</th>
             <th scope="col" class="text-right">Stock</th>
         </tr>
     </thead>
-    <tbody id="product_rows" data-id="@ViewBag.id">
-
-    </tbody>
+    <tbody id="product_rows" data-id="@ViewBag.id"></tbody>
 </table>
 <!-- cart item modal -->
 <div id="cartModal" class="modal fade" tabindex="-1" role="dialog">
@@ -83,6 +94,6 @@
 </div>
 
 @section scripts
-{
+    {
     <script src="../../js/product.js"></script>
 }
