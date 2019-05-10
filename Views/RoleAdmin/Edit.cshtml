@@ -7,7 +7,6 @@
 
 <form asp-action="Edit" method="post">
     <input type="hidden" name="roleName" value="@Model.Role.Name" />
-    <input type="hidden" name="roleId" value="@Model.Role.Id" />
     <ul class="list-group mb-2">
         <li class="list-group-item list-group-item-success">Add To @Model.Role.Name Role</li>
         @if (!Model.NonMembers.Any() && !Model.EmployeeNonMembers.Any())

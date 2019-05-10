@@ -18,8 +18,8 @@
             <tr>
                 <td>@role.Name</td>
                 <td>
-                    <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                        <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@role.Id">Edit</a>
+                    <form asp-action="Delete" asp-route-name="@role.Name" method="post">
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@role.Name">Edit</a>
                         <button type="submit" class="btn btn-sm btn-outline-danger" 
                                 data-toggle="@(role.Name.Equals("Admin") ? "tooltip" : "")"  
                                 data-placement="@(role.Name.Equals("Admin") ? "right" : "")" 
